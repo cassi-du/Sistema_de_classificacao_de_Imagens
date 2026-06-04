@@ -1,0 +1,8 @@
+#pastas
+.venv
+__pycache__
+archive
+
+#arquivos
+*.jpg
+#*.png

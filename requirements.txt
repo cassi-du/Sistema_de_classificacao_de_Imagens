@@ -1,0 +1,14 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+opencv-python
+scikit-image
+mahotas
+joblib
+imbalanced-learn
+scipy
+tqdm
+jupyter
+shap

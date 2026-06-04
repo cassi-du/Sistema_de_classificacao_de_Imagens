@@ -1,0 +1,23 @@
+                       precision    recall  f1-score   support
+
+               Broken       0.54      0.58      0.56        12
+                  Cut       0.30      0.46      0.36        13
+           Dry Cherry       1.00      0.45      0.62        11
+                 Fade       0.17      0.14      0.15         7
+              Floater       0.64      0.70      0.67        10
+           Full Black       0.73      1.00      0.84         8
+            Full Sour       0.58      0.73      0.65        15
+       Fungus Damange       0.53      0.53      0.53        15
+                 Husk       1.00      1.00      1.00        11
+             Immature       0.59      0.81      0.68        16
+            Parchment       0.89      0.73      0.80        11
+        Partial Black       0.79      0.85      0.81        13
+         Partial Sour       0.33      0.20      0.25        10
+Severe Insect Damange       0.71      0.45      0.56        11
+                Shell       0.64      0.64      0.64        11
+ Slight Insect Damage       0.00      0.00      0.00        11
+             Withered       0.56      0.45      0.50        11
+
+             accuracy                           0.59       196
+            macro avg       0.59      0.57      0.57       196
+         weighted avg       0.59      0.59      0.58       196

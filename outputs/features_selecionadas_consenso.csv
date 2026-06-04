@@ -1,0 +1,12 @@
+feature
+H_mean
+S_mean
+V_mean
+frac_dark
+area
+circularity
+eccentricity
+glcm_contrast
+glcm_homogeneity
+lbp_var
+solidity
