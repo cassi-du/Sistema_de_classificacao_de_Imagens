@@ -53,6 +53,7 @@ def extrair_descritores_textura(gray, mask):
         homogeneity = np.sum(P / (1.0 + np.abs(i_idx - j_idx)))
         feats['glcm_contrast'] = float(contrast)
         feats['glcm_homogeneity'] = float(homogeneity)
+
     return feats
 
 
@@ -95,18 +96,21 @@ def features_grao(caminho):
         p = max(props, key=lambda x: x.area)
         area = float(p.area)
 
-        perimeter = p.perimeter if hasattr(p, 'perimeter') else 0
+        perimeter = p.perimeter if hasattr(p, 'perimeter') else 0.0
         if perimeter == 0:
             circularity = 0.0
         else:
             circularity = float(4.0 * np.pi * p.area / (perimeter ** 2))
         solidity = float(p.solidity) if hasattr(p, 'solidity') else 0.0
         eccentricity = float(p.eccentricity) if hasattr(p, 'eccentricity') else 0.0
+        extent = float(p.extent) if hasattr(p, 'extent') else 0.0
 
     feats['area'] = area
     feats['circularity'] = circularity
     feats['solidity'] = solidity
     feats['eccentricity'] = eccentricity
+    feats['perimeter'] = perimeter
+    feats['extent'] = extent
 
     tex = extrair_descritores_textura(gray, mask)
     feats['glcm_contrast'] = tex.get('glcm_contrast', float('nan'))
