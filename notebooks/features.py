@@ -46,13 +46,29 @@ def extrair_descritores_textura(gray, mask):
     if glcm.sum() == 0:
         feats['glcm_contrast'] = 0.0
         feats['glcm_homogeneity'] = 0.0
+        feats['glcm_energy'] = 0.0
+        feats['glcm_correlation'] = 0.0
     else:
         P = glcm / glcm.sum()
         i_idx, j_idx = np.indices(P.shape)
         contrast = np.sum(((i_idx - j_idx) ** 2) * P)
         homogeneity = np.sum(P / (1.0 + np.abs(i_idx - j_idx)))
+        energy = float(np.sum(P ** 2))
+
+        # correlation
+        mu_i = np.sum(i_idx * P)
+        mu_j = np.sum(j_idx * P)
+        std_i = np.sqrt(np.sum(((i_idx - mu_i) ** 2) * P))
+        std_j = np.sqrt(np.sum(((j_idx - mu_j) ** 2) * P))
+        if std_i < 1e-10 or std_j < 1e-10:
+            correlation = 0.0
+        else:
+            correlation = float(np.sum(((i_idx - mu_i) * (j_idx - mu_j) * P) / (std_i * std_j)))
+
         feats['glcm_contrast'] = float(contrast)
         feats['glcm_homogeneity'] = float(homogeneity)
+        feats['glcm_energy'] = energy
+        feats['glcm_correlation'] = correlation
 
     return feats
 
@@ -122,6 +138,8 @@ def features_grao(caminho):
     tex = extrair_descritores_textura(gray, mask)
     feats['glcm_contrast'] = tex.get('glcm_contrast', float('nan'))
     feats['glcm_homogeneity'] = tex.get('glcm_homogeneity', float('nan'))
+    feats['glcm_energy'] = tex.get('glcm_energy', float('nan'))
+    feats['glcm_correlation'] = tex.get('glcm_correlation', float('nan'))
 
     # LBP variance
     lbp = local_binary_pattern(gray, P=8, R=1, method='uniform')
