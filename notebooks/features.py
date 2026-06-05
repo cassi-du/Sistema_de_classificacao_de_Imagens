@@ -92,6 +92,7 @@ def features_grao(caminho):
         perimeter = 0
         solidity = 0
         eccentricity = 0
+        extent = 0
     else:
         p = max(props, key=lambda x: x.area)
         area = float(p.area)
@@ -111,6 +112,12 @@ def features_grao(caminho):
     feats['eccentricity'] = eccentricity
     feats['perimeter'] = perimeter
     feats['extent'] = extent
+
+    # Momentos de Hu (7 valores em escala logarítmica)
+    momentos = cv2.moments(mask)
+    hu = cv2.HuMoments(momentos).flatten()
+    for i, val in enumerate(hu):
+        feats[f'hu_{i + 1}'] = float(-np.sign(val) * np.log10(abs(val) + 1e-10))
 
     tex = extrair_descritores_textura(gray, mask)
     feats['glcm_contrast'] = tex.get('glcm_contrast', float('nan'))
