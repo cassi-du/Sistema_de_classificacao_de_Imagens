@@ -101,6 +101,14 @@ def features_grao(caminho):
     feats['V_mean'] = float(np.mean(V[mask_bool]))
     feats['frac_dark'] = float(np.sum(V[mask_bool] < 80) / np.count_nonzero(mask_bool))
 
+    # Histograma de matiz com máscara (8 bins normalizados)
+    mask_uint8 = mask.astype(np.uint8)
+    hist_h = cv2.calcHist([H], [0], mask_uint8, [8], [0, 180])
+    hist_h = hist_h.flatten()
+    hist_h = hist_h / (hist_h.sum() + 1e-10)  # normaliza
+    for i, val in enumerate(hist_h):
+        feats[f'hist_h_{i}'] = float(val)
+
     lbl = label(mask_bool.astype(np.uint8))
     props = regionprops(lbl)
     if len(props) == 0:
