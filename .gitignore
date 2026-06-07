@@ -4,6 +4,7 @@ __pycache__
 archive
 outputs/data
 outputs/melhor_modelo_rf.joblib
+.idea
 
 #arquivos
 *.jpg
