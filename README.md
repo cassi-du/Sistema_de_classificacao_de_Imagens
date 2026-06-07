@@ -2,6 +2,23 @@
 
 Este projeto implementa o pipeline clássico de visão computacional pedido no trabalho: aquisição, segmentação, extração de features manuais, montagem da matriz X e vetor y, treino de classificadores clássicos e avaliação.
 
+projeto/
+├── notebooks/
+│   ├── 01_segmentacao.ipynb
+│   ├── 02_features.ipynb
+│   └── 03_classificacao.ipynb
+├── outputs/
+│   ├── figuras
+│   ├── matrizes de confusão
+│   ├── tabelas de métricas
+│   ├── gráficos de features
+│   └── imagens de erros
+├── archive/          ← dataset (não incluído no repositório)
+├── X.csv
+├── y.csv
+├── README.md
+└── requirements.txt
+
 Instruções básicas (PowerShell):
 
 1) Criar e ativar ambiente virtual, instalar dependências:
@@ -12,25 +29,25 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-2) Extrair features e montar o dataset (os arquivos serão salvos em `outputs/`):
+2) Baixar dataset e salvar na pasta principal no mesmo nivel que os notebooks e outputs:
 
-```powershell
-python -m notebooks.montar_dataset --archive archive --out outputs/features.csv --max-por-classe 100
-```
+Dataset: https://www.kaggle.com/datasets/sujitraarw/coffee-green-bean-with-17-defects-original/code
+Extrair pasta e irá estar no local
 
-3) Treinar e avaliar modelos (os artefatos serão salvos em `outputs/`):
+**3. Executar na ordem dentro da pasta `notebooks/`:**
+- `01_segmentacao.ipynb` — segmentação e visualização por classe
+- `02_features.ipynb` — extração de features, EDA, seleção e análise
+- `03_classificacao.ipynb` — treino, avaliação e comparação dos modelos
 
-```powershell
-python -m notebooks.treinar_avaliar --dataset outputs/features.csv --out outputs/resultados --models rf logreg
-```
+## Arquivos gerados em `outputs/`
 
-Arquivos importantes:
-- `montar_dataset.py`: percorre `archive/`, extrai descritores via `features.py` e gera `dataset.csv`.
-- `treinar_avaliar.py`: carrega `dataset.csv`, realiza split estratificado (treino/val/test), normaliza (fit apenas no treino), treina e avalia modelos clássicos, salva métricas e matrizes de confusão.
-
-Sugestões de próximos passos (implementações exigidas pelo trabalho):
-- Gerar EDA: boxplots por feature por classe, médias/medianas, comparação visual de distribuições.
-- Seleção e análise de features: `SelectKBest`, importância de variáveis por RandomForest, coeficientes da Regressão Logística, PCA para visualização.
-- Estudo ablation por grupos de features (cor, textura, forma) e validação cruzada.
-
-Se desejar, prossigo implementando a etapa de EDA, seleção de features e as visualizações acadêmicas em português.
+- `segmentacao_exemplos.png` — exemplos de segmentação por classe
+- `features.csv` — tabela completa de features extraídas
+- `X.csv` / `y.csv` — matriz de features e vetor de rótulos separados
+- `boxplots_features.png` — distribuição das features por classe
+- `pca_2d.png` — projeção PCA 2D
+- `importancia_rf.png` — importância de variáveis por Random Forest
+- `metricas_comparativas.csv` — acurácia, precisão, recall e F1 de todos os modelos
+- `matrizes_confusao.png` — matrizes de confusão de todos os modelos
+- `imagens_erros.png` — exemplos de erros do melhor modelo
+- `comparacao_grupos_features.png` — comparação entre grupos de features
