@@ -1,14 +1,12 @@
+pillow
 numpy
 pandas
+opencv-python
+scikit-image
 scikit-learn
 matplotlib
 seaborn
-opencv-python
-scikit-image
-mahotas
-joblib
-imbalanced-learn
-scipy
 tqdm
-jupyter
-shap
+joblib
+#bibliotecas permitidas: numpy, pandas, opencv-python, scikit-image, scikit-learn,
+#matplotlib, seaborn, tensorflow/keras, pytorch

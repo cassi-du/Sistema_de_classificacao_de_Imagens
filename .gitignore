@@ -2,6 +2,8 @@
 .venv
 __pycache__
 archive
+outputs/data
+outputs/melhor_modelo_rf.joblib
 
 #arquivos
 *.jpg
