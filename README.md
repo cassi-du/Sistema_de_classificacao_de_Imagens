@@ -1,7 +1,7 @@
 # Sistema de Classificação de Grãos — Pipeline Clássico
 
 Este projeto implementa o pipeline clássico de visão computacional pedido no trabalho: aquisição, segmentação, extração de features manuais, montagem da matriz X e vetor y, treino de classificadores clássicos e avaliação.
-
+```powershell
 projeto/
 ├── notebooks/
 │   ├── 01_segmentacao.ipynb
@@ -18,7 +18,7 @@ projeto/
 ├── y.csv
 ├── README.md
 └── requirements.txt
-
+```
 Instruções básicas (PowerShell):
 
 1) Criar e ativar ambiente virtual, instalar dependências:
